@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects — Arsene Byusa</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root{
+  --ink:#15130f;
+  --panel:#1e1b17;
+  --chalk:#f2eee4;
+  --dim:#b7b0a0;
+  --amber:#c98a3a;
+  --red:#c1402b;
+  --line:#332e27;
+}
+
+*{ box-sizing:border-box; }
+body{
+  margin:0;
+  background:var(--ink);
+  color:var(--chalk);
+  font-family:'IBM Plex Sans', sans-serif;
+  line-height:1.6;
+}
+img{ max-width:100%; display:block; }
+a{ color:inherit; text-decoration:none; }
+h1,h2,h3{ margin:0 0 12px; font-weight:400; }
+
+.jersey{ font-family:'Bebas Neue', sans-serif; text-transform:uppercase; letter-spacing:.01em; line-height:1; }
+.mono{ font-family:'IBM Plex Mono', monospace; }
+
+.wrap{ max-width:1080px; margin:0 auto; padding:0 24px; }
+
+/* header */
+header{ border-bottom:1px solid var(--line); position:sticky; top:0; background:var(--ink); z-index:10; }
+header .wrap{ display:flex; align-items:center; justify-content:space-between; height:64px; }
+.brand{ font-family:'Bebas Neue',sans-serif; font-size:20px; letter-spacing:.04em; }
+.brand span{ color:var(--red); }
+nav{ display:flex; gap:28px; font-size:14px; }
+nav a:hover, nav a.active{ color:var(--amber); }
+
+/* buttons */
+.btn{ display:inline-block; padding:11px 20px; border-radius:4px; font-weight:600; font-size:14px; border:1px solid var(--line); }
+.btn-fill{ background:var(--amber); color:#1a1408; border-color:var(--amber); }
+.btn-fill:hover{ opacity:.9; }
+.btn:hover{ border-color:var(--dim); }
+
+/* hero */
+.hero{ padding:64px 0; border-bottom:1px solid var(--line); }
+.hero-inner{ display:flex; gap:48px; align-items:center; flex-wrap:wrap; }
+.hero-text{ flex:1 1 380px; }
+.hero-photo{ flex:0 0 260px; }
+.hero-photo img{ border-radius:6px; border:1px solid var(--line); aspect-ratio:3/4; object-fit:cover; }
+.eyebrow{ color:var(--amber); font-size:13px; margin-bottom:14px; }
+.hero-text h1{ font-size:clamp(38px,6vw,64px); }
+.hero-text p{ color:var(--dim); max-width:52ch; margin-top:14px; }
+.actions{ display:flex; gap:12px; margin-top:26px; flex-wrap:wrap; }
+.stats{ display:flex; gap:32px; margin-top:36px; flex-wrap:wrap; }
+.stats b{ display:block; font-family:'Bebas Neue',sans-serif; font-size:26px; }
+.stats span{ font-size:12.5px; color:var(--dim); }
+
+/* sections */
+section.block{ padding:64px 0; border-bottom:1px solid var(--line); }
+.block h2{ font-family:'Bebas Neue',sans-serif; font-size:36px; margin-bottom:28px; }
+.lede{ color:var(--dim); margin:-16px 0 28px; max-width:60ch; }
+
+/* about */
+.about{ display:grid; grid-template-columns:1.3fr 1fr; gap:40px; }
+.about p{ color:var(--dim); margin:0 0 14px; }
+.facts .fact{ display:flex; justify-content:space-between; padding:12px 0; border-top:1px solid var(--line); font-size:14px; gap:12px; }
+.facts .fact:first-child{ border-top:none; }
+.facts span:first-child{ color:var(--dim); }
+
+/* skills */
+.skills{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+.skill-box{ border:1px solid var(--line); padding:20px; border-radius:6px; }
+.skill-box h3{ font-size:13px; text-transform:uppercase; color:var(--amber); margin-bottom:12px; }
+.skill-box ul{ margin:0; padding:0; list-style:none; font-size:14px; }
+.skill-box li{ padding:6px 0; border-top:1px solid var(--line); font-family:'IBM Plex Mono',monospace; }
+.skill-box li:first-child{ border-top:none; }
+
+/* timeline */
+.tl-item{ display:grid; grid-template-columns:140px 1fr; gap:20px; padding:20px 0; border-top:1px solid var(--line); }
+.tl-item:first-child{ border-top:none; }
+.tl-when{ color:var(--amber); font-family:'IBM Plex Mono',monospace; font-size:13px; }
+.tl-role{ font-weight:600; }
+.tl-org{ color:var(--dim); font-size:14px; margin:2px 0 8px; }
+.tl-desc{ color:var(--dim); font-size:14px; max-width:60ch; }
+
+/* project cards */
+.cards{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+.card{ border:1px solid var(--line); border-radius:6px; padding:20px; display:flex; flex-direction:column; gap:8px; }
+.card:hover{ border-color:var(--dim); }
+.card .tag{ color:var(--amber); font-size:12px; font-family:'IBM Plex Mono',monospace; }
+.card h3{ font-size:18px; }
+.card p{ color:var(--dim); font-size:14px; margin:0; flex:1; }
+.card .go{ font-size:13px; font-weight:600; }
+
+/* chips */
+.chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
+.chip{ border:1px solid var(--line); border-radius:14px; padding:4px 11px; font-size:12px; font-family:'IBM Plex Mono',monospace; color:var(--dim); }
+
+/* case studies (projects page) */
+.case{ padding:56px 0; border-bottom:1px solid var(--line); }
+.case h2{ font-family:'Bebas Neue',sans-serif; font-size:38px; margin-bottom:4px; }
+.case .role{ color:var(--dim); font-size:14px; margin-bottom:24px; }
+.case-grid{ display:grid; grid-template-columns:1.4fr 1fr; gap:40px; }
+.case-grid p{ color:var(--dim); margin:0 0 14px; }
+.side h4{ font-size:12px; text-transform:uppercase; color:var(--amber); margin:0 0 8px; }
+.side{ display:flex; flex-direction:column; gap:22px; }
+.side ul{ margin:0; padding-left:18px; color:var(--dim); font-size:13.5px; }
+.side li{ margin-bottom:5px; }
+.callout{ border-left:2px solid var(--red); background:var(--panel); padding:14px 16px; margin:18px 0; font-size:14px; color:var(--dim); border-radius:0 4px 4px 0; }
+.callout b{ display:block; color:var(--chalk); margin-bottom:4px; }
+
+/* contact / footer */
+.contact{ background:var(--panel); padding:48px 0; }
+.contact h2{ font-family:'Bebas Neue',sans-serif; font-size:34px; }
+.contact-links{ display:flex; flex-direction:column; gap:8px; margin-top:16px; }
+.contact-links a{ color:var(--dim); font-size:14.5px; }
+.contact-links a:hover{ color:var(--chalk); }
+footer{ padding:20px 0; font-size:13px; color:var(--dim); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; }
+
+/* mobile */
+@media (max-width:800px){
+  .about, .skills, .cards, .case-grid{ grid-template-columns:1fr; }
+  .tl-item{ grid-template-columns:1fr; }
+  nav{ display:none; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a href="index.html" class="brand">ARSENE<span>.</span>BYUSA</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" style="padding-bottom:32px;">
+  <div class="wrap">
+    <div class="eyebrow">Projects</div>
+    <h1 class="jersey">Three things I've actually shipped.</h1>
+    <p style="color:var(--dim); max-width:56ch; margin-top:14px;">Not tutorials — one storefront my customers use, one hospital tool running on a hospital LAN, and the paperwork that keeps a basketball league from falling apart on a Saturday morning.</p>
+  </div>
+</section>
+
+<section class="case" id="2mg">
+  <div class="wrap">
+    <h2 class="jersey">2MG Sports Park</h2>
+    <div class="role">Founder &amp; solo developer &middot; 2025&ndash;present</div>
+    <div class="case-grid">
+      <div>
+        <p>My own sports gear business — Nike, Adidas, Jordan, New Balance, Puma, and NBA-licensed gear, sold from two branches in Kigali. I built the site and everything behind it myself. It started as a single HTML file with hardcoded product images and a fake payment button that just ran a timer.</p>
+        <p>It's grown into a Node/Express backend with an admin dashboard, a membership system issuing member IDs (2MG-XXXX-XXXX), and order tracking with spend analytics. The storefront pulls category filters live from a <span class="mono">/categories</span> endpoint instead of hardcoding them.</p>
+        <p>Moving onto Render meant leaving local SQLite behind — the database now lives on Turso (libSQL) and images go through Cloudinary. The frontend deploys on Netlify, connected to a custom domain.</p>
+        <div class="callout">
+          <b>A bug worth mentioning</b>
+          The admin dashboard went blank after every Render restart because Render was silently regenerating the auth token. Fixed by pinning <span class="mono">ADMIN_TOKEN</span> as a fixed env variable and adding 401 detection that clears stale tokens automatically.
+        </div>
+        <p>Checkout runs through WhatsApp with a shareable order-summary page. On payments, I tried PayPack Rwanda, then MTN MoMo, then Pesapal in parallel, before settling on MTN MoMo as the live default, with Airtel Money and WhatsApp as fallbacks.</p>
+      </div>
+      <div class="side">
+        <div>
+          <h4>Stack</h4>
+          <div class="chips">
+            <span class="chip">Node.js</span><span class="chip">Express</span><span class="chip">Turso</span>
+            <span class="chip">Cloudinary</span><span class="chip">Render</span><span class="chip">Netlify</span>
+            <span class="chip">MTN MoMo</span>
+          </div>
+        </div>
+        <div>
+          <h4>What it does</h4>
+          <ul>
+            <li>Admin dashboard, token auth</li>
+            <li>Membership &amp; spend analytics</li>
+            <li>Up to 8 images per product</li>
+            <li>WhatsApp checkout</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="case" id="dds">
+  <div class="wrap">
+    <h2 class="jersey">CHUK DDS</h2>
+    <div class="role">Developer &middot; hospital department management system</div>
+    <div class="case-grid">
+      <div>
+        <p>DDS (prototyped first as "careMe") is a department management system for CHUK hospital, running over the hospital's own LAN. It's Node/Express and MySQL, expected to handle 500&ndash;700 concurrent users — a scale that changes how carefully you have to build.</p>
+        <p>Early work was infrastructure: MySQL setup, a missing script in <span class="mono">package.json</span>, a bcrypt dependency issue, and ES module conversion. The data layer now runs on better-sqlite3 in WAL mode, wrapped in a <span class="mono">db.js</span> module that mimics the old mysql2 pool interface.</p>
+        <div class="callout">
+          <b>Bugs that mattered</b>
+          A department name-to-ID bug in <span class="mono">POST /api/users</span> was mis-assigning staff. The login route also wrongly required a <span class="mono">role</span> field, locking out valid users. Both fixed and verified against a real admin account.
+        </div>
+        <p>Now setting up a staging workflow with GitHub branching, so changes get tested before touching the live deployment.</p>
+      </div>
+      <div class="side">
+        <div>
+          <h4>Stack</h4>
+          <div class="chips">
+            <span class="chip">Node.js</span><span class="chip">Express</span><span class="chip">MySQL</span>
+            <span class="chip">better-sqlite3</span>
+          </div>
+        </div>
+        <div>
+          <h4>Scale</h4>
+          <ul>
+            <li>500&ndash;700 concurrent users</li>
+            <li>LAN-only deployment</li>
+            <li>WAL-mode storage layer</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="case" id="ukurikira">
+  <div class="wrap">
+    <h2 class="jersey">Ukurikira League Ops</h2>
+    <div class="role">Program Manager &amp; Head of Referee &middot; TCL, 2025&ndash;present</div>
+    <div class="case-grid">
+      <div>
+        <p>Not all my work is code in a browser. TCL runs Ukurikira, a weekly basketball program across multiple courts, and I manage both the schedule and the referee crew.</p>
+        <p>After a Season 2 scoring error (incident REC-12) traced to an undertrained table crew, I wrote a Table Crew Protocol &amp; Training Manual. A separate fix for chronic late starts: a Game Night Start Time SOP with a T-30/T-20/T-15/T-0 countdown and a forfeit rule for Season 3.</p>
+        <p>Both documents were generated with the <span class="mono">docx</span> Node library rather than formatted by hand — same instinct as any other structured output: define the sections once, generate consistent formatting every time.</p>
+      </div>
+      <div class="side">
+        <div>
+          <h4>Tools</h4>
+          <div class="chips"><span class="chip">docx (Node.js)</span><span class="chip">Google Sheets</span></div>
+        </div>
+        <div>
+          <h4>What changed</h4>
+          <ul>
+            <li>Table crew protocol after REC-12</li>
+            <li>Start-time countdown + forfeit rule</li>
+            <li>Runs across multiple courts weekly</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <h2 class="jersey">Want to build something?</h2>
+    <div class="contact-links">
+      <a href="mailto:Barsene23@gmail.com">Barsene23@gmail.com</a>
+      <a href="tel:+250789684697">+250 789 684 697</a>
+      <a href="https://github.com/barsene23-rgb" target="_blank" rel="noopener">github.com/barsene23-rgb</a>
+      <a href="assets/resume/Arsene_Byusa_CV.pdf" download>Download resume (PDF)</a>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">
+  <span>&copy; 2026 Arsene Byusa</span>
+  <a href="index.html">&larr; Back to home</a>
+</footer>
+
+<script src="assets/js/script.js"></script>
+</body>
+</html>

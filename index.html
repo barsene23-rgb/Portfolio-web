@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arsene Byusa — Software Engineer</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+    :root {
+      --ink: #15130f;
+      --panel: #1e1b17;
+      --chalk: #f2eee4;
+      --dim: #b7b0a0;
+      --amber: #c98a3a;
+      --red: #c1402b;
+      --line: #332e27;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--ink);
+      color: var(--chalk);
+      font-family: 'IBM Plex Sans', sans-serif;
+      line-height: 1.6;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0 0 12px;
+      font-weight: 400;
+    }
+
+    .jersey {
+      font-family: 'Bebas Neue', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: .01em;
+      line-height: 1;
+    }
+
+    .mono {
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    .wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* header */
+    header {
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      background: var(--ink);
+      z-index: 10;
+    }
+
+    header .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .brand {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20px;
+      letter-spacing: .04em;
+    }
+
+    .brand span {
+      color: var(--red);
+    }
+
+    nav {
+      display: flex;
+      gap: 28px;
+      font-size: 14px;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: var(--amber);
+    }
+
+    /* buttons */
+    .btn {
+      display: inline-block;
+      padding: 11px 20px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 14px;
+      border: 1px solid var(--line);
+    }
+
+    .btn-fill {
+      background: var(--amber);
+      color: #1a1408;
+      border-color: var(--amber);
+    }
+
+    .btn-fill:hover {
+      opacity: .9;
+    }
+
+    .btn:hover {
+      border-color: var(--dim);
+    }
+
+    /* hero */
+    .hero {
+      padding: 64px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-inner {
+      display: flex;
+      gap: 48px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .hero-text {
+      flex: 1 1 380px;
+    }
+
+    .hero-photo {
+      flex: 0 0 260px;
+    }
+
+    .hero-photo img {
+      border-radius: 6px;
+      border: 1px solid var(--line);
+      aspect-ratio: 3/4;
+      object-fit: cover;
+    }
+
+    .eyebrow {
+      color: var(--amber);
+      font-size: 13px;
+      margin-bottom: 14px;
+    }
+
+    .hero-text h1 {
+      font-size: clamp(38px, 6vw, 64px);
+    }
+
+    .hero-text p {
+      color: var(--dim);
+      max-width: 52ch;
+      margin-top: 14px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 26px;
+      flex-wrap: wrap;
+    }
+
+    .stats {
+      display: flex;
+      gap: 32px;
+      margin-top: 36px;
+      flex-wrap: wrap;
+    }
+
+    .stats b {
+      display: block;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 26px;
+    }
+
+    .stats span {
+      font-size: 12.5px;
+      color: var(--dim);
+    }
+
+    /* sections */
+    section.block {
+      padding: 64px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .block h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 36px;
+      margin-bottom: 28px;
+    }
+
+    .lede {
+      color: var(--dim);
+      margin: -16px 0 28px;
+      max-width: 60ch;
+    }
+
+    /* about */
+    .about {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 40px;
+    }
+
+    .about p {
+      color: var(--dim);
+      margin: 0 0 14px;
+    }
+
+    .facts .fact {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-top: 1px solid var(--line);
+      font-size: 14px;
+      gap: 12px;
+    }
+
+    .facts .fact:first-child {
+      border-top: none;
+    }
+
+    .facts span:first-child {
+      color: var(--dim);
+    }
+
+    /* skills */
+    .skills {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .skill-box {
+      border: 1px solid var(--line);
+      padding: 20px;
+      border-radius: 6px;
+    }
+
+    .skill-box h3 {
+      font-size: 13px;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 12px;
+    }
+
+    .skill-box ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-size: 14px;
+    }
+
+    .skill-box li {
+      padding: 6px 0;
+      border-top: 1px solid var(--line);
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    .skill-box li:first-child {
+      border-top: none;
+    }
+
+    /* timeline */
+    .tl-item {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 20px;
+      padding: 20px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .tl-item:first-child {
+      border-top: none;
+    }
+
+    .tl-when {
+      color: var(--amber);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+    }
+
+    .tl-role {
+      font-weight: 600;
+    }
+
+    .tl-org {
+      color: var(--dim);
+      font-size: 14px;
+      margin: 2px 0 8px;
+    }
+
+    .tl-desc {
+      color: var(--dim);
+      font-size: 14px;
+      max-width: 60ch;
+    }
+
+    /* project cards */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .card:hover {
+      border-color: var(--dim);
+    }
+
+    .card .tag {
+      color: var(--amber);
+      font-size: 12px;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    .card h3 {
+      font-size: 18px;
+    }
+
+    .card p {
+      color: var(--dim);
+      font-size: 14px;
+      margin: 0;
+      flex: 1;
+    }
+
+    .card .go {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    /* chips */
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .chip {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 4px 11px;
+      font-size: 12px;
+      font-family: 'IBM Plex Mono', monospace;
+      color: var(--dim);
+    }
+
+    /* case studies (projects page) */
+    .case {
+      padding: 56px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .case h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 38px;
+      margin-bottom: 4px;
+    }
+
+    .case .role {
+      color: var(--dim);
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    .case-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 40px;
+    }
+
+    .case-grid p {
+      color: var(--dim);
+      margin: 0 0 14px;
+    }
+
+    .side h4 {
+      font-size: 12px;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin: 0 0 8px;
+    }
+
+    .side {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .side ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--dim);
+      font-size: 13.5px;
+    }
+
+    .side li {
+      margin-bottom: 5px;
+    }
+
+    .callout {
+      border-left: 2px solid var(--red);
+      background: var(--panel);
+      padding: 14px 16px;
+      margin: 18px 0;
+      font-size: 14px;
+      color: var(--dim);
+      border-radius: 0 4px 4px 0;
+    }
+
+    .callout b {
+      display: block;
+      color: var(--chalk);
+      margin-bottom: 4px;
+    }
+
+    /* contact / footer */
+    .contact {
+      background: var(--panel);
+      padding: 48px 0;
+    }
+
+    .contact h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 34px;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .contact-links a {
+      color: var(--dim);
+      font-size: 14.5px;
+    }
+
+    .contact-links a:hover {
+      color: var(--chalk);
+    }
+
+    footer {
+      padding: 20px 0;
+      font-size: 13px;
+      color: var(--dim);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* mobile */
+    @media (max-width:800px) {
+
+      .about,
+      .skills,
+      .cards,
+      .case-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .tl-item {
+        grid-template-columns: 1fr;
+      }
+
+      nav {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="wrap">
+      <a href="index.html" class="brand">ARSENE<span>.</span>BYUSA</a>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div class="hero-text">
+        <div class="eyebrow">Kigali, Rwanda &middot; Software Engineering, AUCA (2023&ndash;2027)</div>
+        <h1 class="jersey">I build the systems behind the game.</h1>
+        <p>Software engineering student who also runs a sports gear business and manages a basketball league's
+          operations. I like projects where both sides show up.</p>
+        <div class="actions">
+          <a href="projects.html" class="btn btn-fill">See my projects</a>
+          <a href="/home/arsene/Downloads/files (3)/Arsene_Byusa_CV.pdf" class="btn">Resume</a>
+        </div>
+        <div class="stats">
+          <div><b>3+</b><span>projects shipped</span></div>
+          <div><b>500&ndash;700</b><span>users on a system I built</span></div>
+          <div><b>2</b><span>roles run at TCL basketball league</span></div>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <img src="/home/arsene/Downloads/files (3)/WhatsApp Image 2026-09-08 at 11.49.55.jpeg" alt="Arsene Byusa">
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="about">
+    <div class="wrap">
+      <h2 class="jersey">About</h2>
+      <div class="about">
+        <div>
+          <p>I'm studying Software Engineering at AUCA (Adventist University of Central Africa), where coursework in
+            Java, PL/SQL, and database design shows up directly in the systems I build outside class.</p>
+          <p>I run 2MG Sports Park, a sports gear business with two branches in Kigali, and built its website and
+            backend myself. I also work with The Community League (TCL), a grassroots basketball league, managing weekly
+            programming and leading the referee crew on game nights.</p>
+          <p>Before that, I spent a year in customer service at CCI Rwanda on the JetBlue account — probably where the
+            patience for debugging came from.</p>
+        </div>
+        <div class="facts">
+          <div class="fact"><span>Location</span><span>Kanombe, Kigali</span></div>
+          <div class="fact"><span>Studying</span><span>Software Engineering, AUCA</span></div>
+          <div class="fact"><span>Languages</span><span>Kinyarwanda, English, French</span></div>
+          <div class="fact"><span>Email</span><span>Barsene23@gmail.com</span></div>
+          <div class="fact"><span>Phone</span><span>+250 789 684 697</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="skills">
+    <div class="wrap">
+      <h2 class="jersey">Skills</h2>
+      <div class="skills">
+        <div class="skill-box">
+          <h3>Languages &amp; core</h3>
+          <ul>
+            <li>JavaScript / Node.js</li>
+            <li>C / C++</li>
+            <li>SQL &amp; PL/SQL</li>
+            <li>HTML / CSS</li>
+            <li>MySQL</li>
+          </ul>
+        </div>
+        <div class="skill-box">
+          <h3>Building &amp; shipping</h3>
+          <ul>
+            <li>Express.js APIs</li>
+            <li>SQLite / Turso</li>
+            <li>Git &amp; GitHub</li>
+            <li>Render &amp; Netlify</li>
+            <li>Cloudinary</li>
+          </ul>
+        </div>
+        <div class="skill-box">
+          <h3>Working with people</h3>
+          <ul>
+            <li>Customer service</li>
+            <li>Public speaking</li>
+            <li>Problem solving</li>
+            <li>Basketball coaching &amp; refereeing</li>
+            <li>Microsoft Office tools</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="experience">
+    <div class="wrap">
+      <h2 class="jersey">Experience</h2>
+      <div class="tl-item">
+        <div class="tl-when">2025&ndash; july 2026</div>
+        <div>
+          <div class="tl-role">Ukurikira Program Manager &amp; Head of Referee</div>
+          <div class="tl-org">TCL — The Community League, Kigali</div>
+          <div class="tl-desc">Run the weekly Ukurikira calendar across courts, manage referees and volunteers, and
+            officiate game nights. Wrote a Table Crew Protocol and a Game Night Start Time SOP.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">May 2026</div>
+        <div>
+          <div class="tl-role">Court / Operations Volunteer</div>
+          <div class="tl-org">Basketball Africa League (BAL) Finals, Kigali</div>
+          <div class="tl-desc">Managed seating, VIP hospitality, and Presidential-area security during the BAL Playoffs
+            Finals.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">2023&ndash;2024</div>
+        <div>
+          <div class="tl-role">Customer Service Representative — JetBlue account</div>
+          <div class="tl-org">CCI Rwanda</div>
+          <div class="tl-desc">Handled inquiries, complaints, and order issues for a US airline account.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">3-month program</div>
+        <div>
+          <div class="tl-role">Trainee</div>
+          <div class="tl-org">Harambee Youth Accelerator</div>
+          <div class="tl-desc">Employability and professional-skills training.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="work">
+    <div class="wrap">
+      <h2 class="jersey">Selected work</h2>
+      <p class="lede">Full write-ups are on the projects page.</p>
+      <div class="cards">
+        <a href="projects.html#2mg" class="card">
+          <span class="tag">Full-stack &middot; E-commerce</span>
+          <h3>2MG Sports Park</h3>
+          <p>Sports gear storefront with an admin dashboard, member IDs, and WhatsApp checkout.</p>
+          <span class="go">Read the case study &rsaquo;</span>
+        </a>
+        <a href="projects.html#dds" class="card">
+          <span class="tag">LAN app &middot; Healthcare</span>
+          <h3>CHUK DDS</h3>
+          <p>A department management system for a hospital, built to hold 500&ndash;700 concurrent users.</p>
+          <span class="go">Read the case study &rsaquo;</span>
+        </a>
+        <a href="projects.html#ukurikira" class="card">
+          <span class="tag">Systems &amp; process</span>
+          <h3>Ukurikira League Ops</h3>
+          <p>Protocols that fixed a scoring error and chronic late starts across a weekly basketball program.</p>
+          <span class="go">Read the case study &rsaquo;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <h2 class="jersey">Let's talk.</h2>
+      <div class="contact-links">
+        <a href="mailto:Barsene23@gmail.com">Barsene23@gmail.com</a>
+        <a href="tel:+250789684697">+250 789 684 697</a>
+        <a href="https://github.com/barsene23-rgb" target="_blank" rel="noopener">github.com/barsene23-rgb</a>
+
+      </div>
+    </div>
+  </section>
+
+
+
+  <script src="assets/js/script.js"></script>
+</body>
+
+</html>
